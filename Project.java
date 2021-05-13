@@ -6,7 +6,6 @@ import org.json.simple.parser.*;
   
 public class Project 
 {
-   //Initializing the arrays needed:
    public static ArrayList<String> namesArray = new ArrayList<>();
    public static ArrayList<Long> totalSalesArray = new ArrayList<>();
    public static ArrayList<Long> salesPeriodArray = new ArrayList<>();
@@ -17,15 +16,14 @@ public class Project
 
            JSONParser parser = new JSONParser();
 
-
            //Reading arguments from command line
            Object obj = parser.parse(new FileReader(new File(args[0])));
            
            boolean j = false;
            //Doing the following allows the system to handle the data and report file accordingly
            //No matter if the report.json file is first or second argument
-           //The try method tries to make an arran of object, if the report.json file is first argument,
-           //An error will occur, since we have not enoght objects in the file to make an array
+           //The try method tries to make an array of object, if the report.json file is first argument,
+           //An error will occur, since we have not enough objects in the file to make an array
            try{
                JSONArray jsonObjects =  (JSONArray) obj;
                j = true;
@@ -33,7 +31,6 @@ public class Project
            catch (Exception e) {
            }
 
-           //Sending the corrisponding arguments to the methods so they can be handled there:
            if (j)
            {
               data(args[0]);
@@ -47,14 +44,12 @@ public class Project
        
    }
 
-
-   //A method to take care of the data.json file:
    public static void data(String filename)
    {
       JSONParser parser = new JSONParser();
       try{
 
-      //Reading the data.json file with filename beign the argument passed:
+      //Reading the data.json file with filename being the argument passed:
       Object obj = parser.parse(new FileReader(new File(filename)));
       
       JSONArray jsonObjects =  (JSONArray) obj;
@@ -86,7 +81,6 @@ public class Project
 
    }
 
-   //A method to handle the information from the report file:
    public static void report(String filename)
    {
       JSONParser parser = new JSONParser();
@@ -103,7 +97,6 @@ public class Project
    
             Long periodLimit = (Long) jsonObject.get("periodLimit");
 
-            //Passing the information to the calculate method:
             calculate(topPerfoTres, useXMulti, periodLimit);
            
          } catch (FileNotFoundException e) {
@@ -117,7 +110,6 @@ public class Project
 
    }
 
-   //A method to do the calcuations needed:
    public static void calculate(Long topPerfoTres, Boolean useXMulti, Long periodLimit)
    {
       ArrayList<Double> scOrdered = new ArrayList<>();
